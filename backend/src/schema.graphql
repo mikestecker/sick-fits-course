@@ -1,0 +1,24 @@
+# import * from './generated/prisma.graphql'
+
+scalar Upload
+
+type Mutation {
+  createItem(
+    title: String
+    description: String
+    price: Int
+    image: FileCreateOneInput
+    largeImage: String
+  ): Item!
+
+  uploadFile(file: Upload!): File!
+  uploadFiles(files: [Upload!]!): [File!]!
+  renameFile(id: ID!, name: String!): File
+  deleteFile(id: ID!): File
+}
+
+type Query {
+  items: [Item]!
+  file(id: ID!): File
+  files: [File!]!
+}

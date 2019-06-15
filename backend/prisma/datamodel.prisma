@@ -1,0 +1,30 @@
+type User {
+  id: ID! @id
+  name: String!
+  email: String! @unique
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Item {
+  id: ID! @id
+  title: String!
+  description: String!
+  image: File
+  largeImage: String
+  price: Int!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  # user: User!
+}
+
+type File {
+  id: ID! @id
+  filename: String!
+  mimetype: String!
+  encoding: String!
+  url: String! @unique
+  isApproved: Boolean! @default(value: false)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}

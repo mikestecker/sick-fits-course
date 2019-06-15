@@ -1,0 +1,18 @@
+# Specifies the HTTP endpoint of your Prisma API.
+#endpoint: ''
+endpoint: ${env:PRISMA_ENDPOINT}
+
+# Defines your models, each model is mapped to the database as a table.
+datamodel: datamodel.prisma
+
+secret: ${env:PRISMA_SECRET}
+
+generate:
+  - generator: graphql-schema
+    output: ../src/generated/prisma.graphql
+
+# Ensures Prisma client is re-generated after a datamodel change.
+hooks:
+  post-deploy:
+    - prisma generate
+    # - cd prisma && graphql get-schema -p prisma --dotenv ../.env
